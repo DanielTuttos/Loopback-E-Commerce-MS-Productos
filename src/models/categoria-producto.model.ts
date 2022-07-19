@@ -1,6 +1,26 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model(
+  {
+    settings: {
+      mysql: {table: 'categoriaproducto'},
+      foreignKeys: {
+        fk_cat_prod_id_producto: {
+          name: 'fk_cat_prod_id_producto',
+          entity: 'Producto',
+          entityKey: 'id',
+          foreignkey: 'id_producto'
+        },
+        fk_cat_prod_id_categoria: {
+          name: 'fk_cat_prod_id_categoria',
+          entity: 'Categoria',
+          entityKey: 'id',
+          foreignkey: 'id_categoria'
+        }
+      }
+    }
+  }
+)
 export class CategoriaProducto extends Entity {
   @property({
     type: 'number',
